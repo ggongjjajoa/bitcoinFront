@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>NexyBit - The Advanced Bitcoin Futures Trading Platform</title>
+    <link rel="icon" href="http://localhost/img/favicon.fw.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="http://localhost/img/favicon.fw.ico" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" media="screen" href="http://localhost/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="http://localhost/css/bitFront.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="http://localhost/css/grid-styles.css">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="http://localhost/css/styles.css"> -->
+    <script>
+        (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-98717343-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+</head>
+
+<body>
+    <script>
+        var agent = navigator.userAgent.toLowerCase();
+        if ((navigator.appName == 'Netscape' && agent.indexOf('trident') != -1) || (agent.indexOf("msie") != -1)) {
+            document.writeln('If you are reading this message, you have accessed the site through an unsupported browser. Please connect with chrome or edge');
+        }
+    </script>
+    <div id="root"></div>
+    <script src="http://localhost/js/jquery-3.1.1.min.js"></script>
+    <script src="http://localhost/js/bootstrap.min.js"></script>
+    <script src="http://localhost/js/sockjs.js"></script>
+    <script src="http://localhost/bundle.js"></script>
+</body>
+
+</html>
