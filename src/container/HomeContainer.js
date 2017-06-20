@@ -1,22 +1,25 @@
 import React from 'react';
 import update from 'react-addons-update';
 import axios from 'axios';
+import {connect} from 'react-redux';
+
+import {serverUrl} from '../Config';
 
 const itemList = [
     {
         item_name: "btc",
         contract_type: "this_week",
-        lastPrice: 0
+        last_price: 0
     },
     {
         item_name: "btc",
         contract_type: "next_week",
-        lastPrice: 0
+        last_price: 0
     },
     {
         item_name: "btc",
         contract_type: "quarter",
-        lastPrice: 0
+        last_price: 0
     },
 ];
 
@@ -30,6 +33,29 @@ class HomeContainer extends React.Component {
         }
     }
 
+    componentDidMount() {
+        this.getItemData();
+        if(this.props.CommonStore.client != null){
+            this.onSubscribeTicker(this.props.CommonStore.client);
+        }
+    }
+
+    componentWillUnmount() {
+        if(this.state.subscribeTicker!=null){
+            this.state.subscribeTicker.unsubscribe();
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if(this.props.CommonStore.client == null && nextProps.CommonStore.client != null){
+            if(this.state.subscribeTicker!=null){
+                this.state.subscribeTicker.unsubscribe();
+            }
+            this.getItemData();
+            this.onSubscribeTicker(nextProps.CommonStore.client);
+        }
+    }
+
     onChartClick(itemNo){
         if(itemList.length>=itemNo&&itemNo>=-1&&this.state.openChartNo!=itemNo){
             this.setState({openChartNo: itemNo});
@@ -38,8 +64,7 @@ class HomeContainer extends React.Component {
         }
     }
 
-    getInitialData(){
-        axios.
+    getItemData(){
     }
 
     onSubscribeTicker(client){
@@ -70,4 +95,8 @@ class HomeContainer extends React.Component {
     }
 }
 
-export default HomeContainer;
+const mapStateToProps = (state) => {
+    return {CommonStore: state.CommonReducer};
+};
+
+export default connect(mapStateToProps)(HomeContainer);
