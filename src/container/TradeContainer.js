@@ -24,7 +24,9 @@ class TradeContainer extends React.Component {
     }
 
     render() {
-        return ();
+        return (
+            <div></div>
+        );
     }
 }
 

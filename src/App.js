@@ -9,6 +9,9 @@ import {
 } from 'react-router';
 
 import MainLayout from './components/layouts/MainLayout';
+import test1 from './components/test1';
+import test2 from './components/test2';
+
 
 import HomeContainer from './container/HomeContainer';
 import TradeContainer from './container/TradeContainer';
@@ -18,8 +21,8 @@ class App extends React.Component {
         return (
             <Router history={browserHistory}>
                 <Route path="/" components={MainLayout}>
-                    <IndexRoute component={HomeContainer}/>
-                    <Route path="trade" component={TradeContainer}/>
+                    <IndexRoute component={test1}/>
+                    <Route path="trade" component={test2}/>
                 </Route>
             </Router>
         );
