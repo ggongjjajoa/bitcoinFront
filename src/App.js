@@ -8,7 +8,7 @@ import {
     refresh
 } from 'react-router';
 
-import MainLayout from './components/layouts/MainLayout';
+import MainLayout from './components/Header';
 import test1 from './components/test1';
 import test2 from './components/test2';
 

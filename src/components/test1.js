@@ -1,142 +1,63 @@
 import React from 'react';
+import Card from 'react-md/lib/Cards/Card';
+import CardTitle from 'react-md/lib/Cards/CardTitle';
+import CardActions from 'react-md/lib/Cards/CardActions';
+import CardText from 'react-md/lib/Cards/CardText';
 
 const test1 = (props) => {
-	return (
-		<div className="row">
-			<div className="col s12 m12">
-				<div className="card blue-grey darken-1">
-					<div className="card-content white-text">
-						<span className="card-title">Card Title</span>
-						<p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-					</div>
-					<div className="card-action">
-						<a href="#">This is a link</a>
-						<a href="#">This is a link</a>
-					</div>
-				</div>
-				<div className="card blue-grey darken-1">
-					<div className="card-content white-text">
-						<span className="card-title">Card Title</span>
-						<p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-					</div>
-					<div className="card-action">
-						<a href="#">This is a link</a>
-						<a href="#">This is a link</a>
-					</div>
-				</div>
-				<div className="card blue-grey darken-1">
-					<div className="card-content white-text">
-						<span className="card-title">Card Title</span>
-						<p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-					</div>
-					<div className="card-action">
-						<a href="#">This is a link</a>
-						<a href="#">This is a link</a>
-					</div>
-				</div>
-				<div className="card blue-grey darken-1">
-					<div className="card-content white-text">
-						<span className="card-title">Card Title</span>
-						<p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-					</div>
-					<div className="card-action">
-						<a href="#">This is a link</a>
-						<a href="#">This is a link</a>
-					</div>
-				</div>
-				<div className="card blue-grey darken-1">
-					<div className="card-content white-text">
-						<span className="card-title">Card Title</span>
-						<p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-					</div>
-					<div className="card-action">
-						<a href="#">This is a link</a>
-						<a href="#">This is a link</a>
-					</div>
-				</div>
-				<div className="card blue-grey darken-1">
-					<div className="card-content white-text">
-						<span className="card-title">Card Title</span>
-						<p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-					</div>
-					<div className="card-action">
-						<a href="#">This is a link</a>
-						<a href="#">This is a link</a>
-					</div>
-				</div>
-				<div className="card blue-grey darken-1">
-					<div className="card-content white-text">
-						<span className="card-title">Card Title</span>
-						<p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-					</div>
-					<div className="card-action">
-						<a href="#">This is a link</a>
-						<a href="#">This is a link</a>
-					</div>
-				</div>
-				<div className="card blue-grey darken-1">
-					<div className="card-content white-text">
-						<span className="card-title">Card Title</span>
-						<p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-					</div>
-					<div className="card-action">
-						<a href="#">This is a link</a>
-						<a href="#">This is a link</a>
-					</div>
-				</div>
-				<div className="card blue-grey darken-1">
-					<div className="card-content white-text">
-						<span className="card-title">Card Title</span>
-						<p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-					</div>
-					<div className="card-action">
-						<a href="#">This is a link</a>
-						<a href="#">This is a link</a>
-					</div>
-				</div>
-				<div className="card blue-grey darken-1">
-					<div className="card-content white-text">
-						<span className="card-title">Card Title</span>
-						<p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-					</div>
-					<div className="card-action">
-						<a href="#">This is a link</a>
-						<a href="#">This is a link</a>
-					</div>
-				</div>
-				<div className="card blue-grey darken-1">
-					<div className="card-content white-text">
-						<span className="card-title">Card Title</span>
-						<p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-					</div>
-					<div className="card-action">
-						<a href="#">This is a link</a>
-						<a href="#">This is a link</a>
-					</div>
-				</div>
-				<div className="card blue-grey darken-1">
-					<div className="card-content white-text">
-						<span className="card-title">Card Title</span>
-						<p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-					</div>
-					<div className="card-action">
-						<a href="#">This is a link</a>
-						<a href="#">This is a link</a>
-					</div>
-				</div>
-				<div className="card blue-grey darken-1">
-					<div className="card-content white-text">
-						<span className="card-title">Card Title</span>
-						<p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-					</div>
-					<div className="card-action">
-						<a href="#">This is a link</a>
-						<a href="#">This is a link</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	);
+    return (
+        <div>
+            <Card>
+                <CardTitle title="Card Title" subtitle="Card Subtitle"/>
+                <CardActions expander></CardActions>
+                <CardText expandable>
+                    aaaaaa
+                </CardText>
+            </Card>
+            <Card>
+                <CardTitle title="Card Title" subtitle="Card Subtitle"/>
+                <CardActions expander></CardActions>
+                <CardText expandable>
+                    aaaaaa
+                </CardText>
+            </Card>
+            <Card>
+                <CardTitle title="Card Title" subtitle="Card Subtitle"/>
+                <CardActions expander></CardActions>
+                <CardText expandable>
+                    aaaaaa
+                </CardText>
+            </Card>
+            <Card className="md-block-centered">
+                <CardTitle title="Card Title" subtitle="Card Subtitle"/>
+                <CardActions expander></CardActions>
+                <CardText expandable>
+                    aaaaaa
+                </CardText>
+            </Card>
+            <Card className="md-block-centered">
+                <CardTitle title="Card Title" subtitle="Card Subtitle"/>
+                <CardActions expander></CardActions>
+                <CardText expandable>
+                    aaaaaa
+                </CardText>
+            </Card>
+            <Card className="md-block-centered">
+                <CardTitle title="Card Title" subtitle="Card Subtitle"/>
+                <CardActions expander></CardActions>
+                <CardText expandable>
+                    aaaaaa
+                </CardText>
+            </Card>
+            <Card className="md-block-centered">
+                <CardTitle title="Card Title" subtitle="Card Subtitle"/>
+                <CardActions expander></CardActions>
+                <CardText expandable>
+                    aaaaaa
+                </CardText>
+            </Card>
+        </div>
+    );
 }
 
 export default test1;
