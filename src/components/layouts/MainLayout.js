@@ -3,10 +3,6 @@ import NavigationDrawer from 'react-md/lib/NavigationDrawers';
 
 import sideNav from './sideNav';
 
-const miniNav = {
-
-}
-
 class MainLayout extends PureComponent {
 	constructor(props) {
 		super(props);
@@ -16,7 +12,7 @@ class MainLayout extends PureComponent {
 		};
 		this._setPage = this._setPage.bind(this);
 		this._navItems = sideNav.map(item => {
-			if (!item.divider && !item.nestedItems) {
+			if (!item.divider) {
 				item.onClick = () => {this._setPage(item.key);console.log("click "+item.key);};
 			}
 			if(!item.divider && item.nestedItems){
