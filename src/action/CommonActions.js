@@ -8,3 +8,11 @@ const disconnect = () => {
 const connect = (data) => {
   return {type : "CONNECT", client: data};
 }
+
+export const setItemList = (itemList) => (dispatch) => {
+    return dispatch(_setItemList(itemList))
+}
+
+const _setItemList = (itemList) => {
+    return {type : "SETITEMLIST", itemList: itemList};
+}

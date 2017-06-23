@@ -4,6 +4,7 @@ import {getUsername} from './oAuth';
 {/*export const imgUrl = "http://" + location.host;*/}
 export const serverUrl = "https://nexybit.com/api";
 export const imgUrl = "https://" + location.host;
+
 export const requestSuccess = () => {
   sessionStorage.setItem("errorCount",0);
 }

@@ -1,6 +1,7 @@
 const initialState = {
     isConnect: true,
-    client: null
+    client: null,
+    itemList: null
 };
 
 const CommonReducer = (state = initialState, action) => {
@@ -17,6 +18,12 @@ const CommonReducer = (state = initialState, action) => {
               ...state,
               isConnect: false,
               client: null
+            }
+            break;
+        case "SETITEMLIST":
+            return {
+              ...state,
+              itemList: action.itemList
             }
             break;
         default:

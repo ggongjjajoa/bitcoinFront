@@ -1,43 +1,37 @@
 import React from 'react';
+import { Link } from 'react-router';
 import FontIcon from 'react-md/lib/FontIcons';
 
+const isActive = (to, path) => {
+  return to === path;
+}
 export default[
     {
-        key : 'home',
+        component: Link,
+        to : '/',
         primaryText : 'Home',
-        leftIcon : <FontIcon>view_list</FontIcon>,
-        active : true
+        active : isActive('/',pathname),
+        leftIcon : <FontIcon>view_list</FontIcon>
     }, {
-        key : 'trade',
+        key : '/trade',
         primaryText : 'Trade',
         leftIcon : <FontIcon>trending_up</FontIcon>,
 		defaultOpen: true,
+        active : isActive('/trade',pathname),
         nestedItems : [
             {
-                key: 'btc_thisweek',
+                component: Link,
+                to: 'trade/thisweek',
                 primaryText: 'aaaa'
             }, {
-                key: 'btc_nextweek',
+                component: Link,
+                to: 'trade/nextweek',
                 primaryText: 'bbbb'
             }, {
-                key: 'btc_quarter',
+                component: Link,
+                to: 'trade/quarter',
                 primaryText: 'cccc'
             }
         ]
-    }, {
-        key : 'divider',
-        divider : true
-    }, {
-        key : 'account',
-        primaryText : 'Account',
-        leftIcon : <FontIcon>mail</FontIcon>
-    }, {
-        key : 'affiliate',
-        primaryText : 'Affiliate',
-        leftIcon : <FontIcon>info</FontIcon>
-    }, {
-        key : 'support',
-        primaryText : 'Support',
-        leftIcon : <FontIcon>delete</FontIcon>
     }
 ];
