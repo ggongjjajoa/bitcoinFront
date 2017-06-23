@@ -1,7 +1,8 @@
 const initialState = {
     isConnect: true,
     client: null,
-    itemList: null
+    itemList: null,
+    expandItem: ""
 };
 
 const CommonReducer = (state = initialState, action) => {
@@ -24,6 +25,12 @@ const CommonReducer = (state = initialState, action) => {
             return {
               ...state,
               itemList: action.itemList
+            }
+            break;
+        case "SETITEMEXPAND":
+            return {
+              ...state,
+              expandItem: action.expandItem
             }
             break;
         default:

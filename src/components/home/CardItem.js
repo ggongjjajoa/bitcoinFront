@@ -1,4 +1,6 @@
-import React, { PropTypes } from 'react';
+import React, {PropTypes} from 'react';
+import {connect} from 'react-redux';
+import numeral from 'numeral';
 
 import Card from 'react-md/lib/Cards/Card';
 import CardTitle from 'react-md/lib/Cards/CardTitle';
@@ -7,24 +9,31 @@ import CardText from 'react-md/lib/Cards/CardText';
 
 import Avatar from 'react-md/lib/Avatars';
 
-import numeral from 'numeral';
+import {setExpandCard} from '../../action/CommonActions';
+import Chart from './Chart';
 
 const itemCard = (props) => {
-    console.log(props);
-    return (
-        <Card onExpanderClick={()=>{console.log("click");}}>
-            <CardTitle title={props.title==""?"Data Not Found":props.title} subtitle={numeral(props.subtitle).format('0,0.00')} expander style={{padding:"12px"}} avatar={<Avatar src={"http://localhost/img/btc.png"} role="presentation">B</Avatar>}/>
-            <CardText expandable>
-                <p>aaaa</p>
-                <p>aaaa</p>
-                <p>aaaa</p>
-                <p>aaaa</p>
-                <p>aaaa</p>
-                <p>aaaa</p>
-                <p>aaaa</p>
-            </CardText>
-        </Card>
-    )
+	return (
+		<Card onExpanderClick={() => {
+			if (props.expand) {
+				props.dispatch(setExpandCard(""));
+			} else {
+				props.dispatch(setExpandCard(props.contract_type));
+			}
+		}} expanded={props.expand}>
+			<CardTitle title={props.title == ""
+				? "Data Not Found"
+				: props.title} subtitle={numeral(props.subtitle).format('0,0.00')} expander style={{
+				padding: "12px"
+			}} avatar={< Avatar src = {
+				"http://localhost/img/btc.png"
+			}
+			role = "presentation" > B < /Avatar>}/>
+			<CardText expandable>
+                <Chart chartData={props.chartData}/>
+			</CardText>
+		</Card>
+	)
 }
 
-export default itemCard;
+export default connect(null)(itemCard);

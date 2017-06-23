@@ -16,3 +16,7 @@ export const setItemList = (itemList) => (dispatch) => {
 const _setItemList = (itemList) => {
     return {type : "SETITEMLIST", itemList: itemList};
 }
+
+export const setExpandCard = (i) => {
+    return {type : "SETITEMEXPAND", expandItem: i};
+}
