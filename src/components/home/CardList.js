@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import CardItem from './CardItem';
 
 import {connect} from 'react-redux';

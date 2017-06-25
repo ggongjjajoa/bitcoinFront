@@ -24,7 +24,8 @@ var {ema, sma, wma, tma} = indicator;
 
 class CandleStickStockScaleChart extends React.Component {
     render() {
-        var { type, width, ratio } = this.props;
+        var { type, ratio, height} = this.props;
+        var width = this.props.width - 20;
         let chartData = this.props.chartData;
         let sma5 = sma().windowSize(5).sourcePath("close").merge((d, c) => {
             d.sma5 = c;
@@ -47,13 +48,13 @@ class CandleStickStockScaleChart extends React.Component {
         }).accessor(d => d.sma120).stroke("#0000ff");
 
         let margin = {
-            left: 70,
-            right: 70,
-            top: 20,
-            bottom: 20
+            left: 38,
+            right: 10,
+            top: 5,
+            bottom: 15
         };
-        let gridHeight = width - margin.top - margin.bottom;
-        let gridWidth = 400 - margin.left - margin.right;
+        let gridHeight = height - margin.top - margin.bottom;
+        let gridWidth = width - margin.left - margin.right;
 
         let showGrid = true;
         let yGrid = showGrid
@@ -74,16 +75,16 @@ class CandleStickStockScaleChart extends React.Component {
             : {};
         if (chartData.length==0) {
             return (
-                <div className="text-center" style={{
-                    marginTop: "20px"
+                <div style={{
+                    textAlign:"center", height:"165px"
                 }}>
-                    <br/><br/><br/><br/><br/><Loader color="#dadee0" height={"100px"} width={"20px"} radius={"0px"} margin="2px"/>
+                    <Loader color="#dadee0" height={"100px"} width={"20px"} radius={"0px"} margin="2px" />
                 </div>
             );
         } else {
             return (
-                <div className="panel-body">
-                    <ChartCanvas ratio={1} xExtents={[chartData[chartData.length-101].date, chartData[chartData.length-1].date]} width={width} height={400} margin={margin} type="hybrid" seriesName="MSFT" data={chartData} xAccessor={d => d.date} calculator={[sma5, sma10, sma20, sma60, sma120]} xScaleProvider={discontinuousTimeScaleProvider}>
+                <div>
+                    <ChartCanvas ratio={1} xExtents={[chartData[chartData.length-51].date, chartData[chartData.length-1].date]} width={width} height={height} margin={margin} type="hybrid" seriesName="MSFT" data={chartData} xAccessor={d => d.date} calculator={[sma5, sma10, sma20, sma60, sma120]} xScaleProvider={discontinuousTimeScaleProvider}>
                         <Chart id={1} yExtents={[
                             d => [
                                 d.high, d.low
@@ -93,11 +94,9 @@ class CandleStickStockScaleChart extends React.Component {
                             sma20.accessor(),
                             sma60.accessor(),
                             sma120.accessor()
-                        ]} ticks={6}>
-                            <YAxis axisAt="left" orient="left" {...yGrid} tickStroke="#dadee0" stroke="#dadee0"/>
-                            <XAxis axisAt="bottom" orient="bottom" tickStroke="#dadee0" stroke="#dadee0"/>
-                            <MouseCoordinateY at="right" orient="right" displayFormat={format(".2f")}/>
-                            <MouseCoordinateX at="top" orient="top" displayFormat={timeFormat("%m-%d %H:%M")}/>
+                        ]}>
+                            <YAxis axisAt="left" orient="left" {...yGrid} ticks={6} tickStroke="#000000" stroke="#000000"/>
+                            <XAxis axisAt="bottom" orient="bottom" {...xGrid} ticks={6} tickStroke="#000000" stroke="#000000"/>
                             <CandlestickSeries fill={(d) => d.close > d.open
                                 ? "#9ad858"
                                 : "#bf67b1"} wickStroke={d => d.close > d.open
@@ -115,16 +114,7 @@ class CandleStickStockScaleChart extends React.Component {
                             <CurrentCoordinate yAccessor={sma20.accessor()} fill={sma20.stroke()}/>
                             <CurrentCoordinate yAccessor={sma60.accessor()} fill={sma60.stroke()}/>
                             <CurrentCoordinate yAccessor={sma120.accessor()} fill={sma120.stroke()}/>
-                            <EdgeIndicator itemType="last" orient="right" edgeAt="right" yAccessor={d => d.close} fill={d => d.close > d.open
-                                ? "#9ad858"
-                                : "#bf67b1"}/>
-                            <EdgeIndicator itemType="first" orient="left" edgeAt="left" yAccessor={d => d.close} fill={d => d.close > d.open
-                                ? "#9ad858"
-                                : "#bf67b1"}/>
-                            <OHLCTooltip origin={[0, -5]} stroke="#ffffff"/>
-                            <MovingAverageTooltip origin={[0, 0]} calculators={[sma5, sma10, sma20, sma60, sma120]}/>
                         </Chart>
-                        <CrossHairCursor/>
                     </ChartCanvas>
                 </div>
             );
