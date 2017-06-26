@@ -4,19 +4,17 @@ import Tabs from 'react-md/lib/Tabs/Tabs';
 import Tab from 'react-md/lib/Tabs/Tab';
 import TabsContainer from 'react-md/lib/Tabs/TabsContainer';
 
-import TextField from 'react-md/lib/TextFields';
-
 import Papers from 'react-md/lib/Papers';
 
 import FontIcon from 'react-md/lib/FontIcons';
-
-import Toolbar from 'react-md/lib/Toolbars';
 
 import Button from 'react-md/lib/Buttons/Button';
 
 import Dialog from 'react-md/lib/Dialogs';
 
-class test2 extends React.Component {
+import Order from './Order';
+
+class TapsCtrl extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -24,11 +22,9 @@ class test2 extends React.Component {
             pageX: null,
             pageY: null
         };
-        this._closeDialog = this._closeDialog.bind(this);
     }
 
-    _openDialog(e,data) {
-        console.log(data);
+    openDialog(e,data) {
         let {pageX, pageY} = e;
         if (e.changedTouches) {
             const [touch] = e.changedTouches;
@@ -38,13 +34,11 @@ class test2 extends React.Component {
         this.setState({visible: true, pageX, pageY});
     }
 
-    _closeDialog() {
+    closeDialog() {
         this.setState({visible: false});
     }
 
     render() {
-        const nav = <Button icon onClick={this._closeDialog}>close</Button>;
-
         return (
             <div>
                 <TabsContainer panelClassName="md-grid" colored panelStyle={{
@@ -69,16 +63,15 @@ class test2 extends React.Component {
                         </Tab>
                     </Tabs>
                 </TabsContainer>
-                <Button onClick={(e)=>{this._openDialog(e,11)}} floating secondary fixed>
+                <Button onClick={(e)=>{this.openDialog(e,11)}} floating secondary fixed>
                     add
                 </Button>
-                <Dialog id="fullPageExample" onHide={this._closeDialog} {...this.state} fullPage aria-label="New Event">
-                    <Toolbar colored nav={nav} title="New Event" fixed/>
-                    aaaa
+                <Dialog id="fullOrder" onHide={()=>{this.closeDialog()}} {...this.state} fullPage aria-label="New Order">
+                    <Order closeDialog={this.closeDialog.bind(this)}/>
                 </Dialog>
             </div>
         );
     }
 }
 
-export default test2;
+export default TapsCtrl;

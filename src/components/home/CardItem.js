@@ -1,4 +1,4 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
 import numeral from 'numeral';
 
@@ -17,6 +17,7 @@ import {setExpandCard} from '../../action/CommonActions';
 
 import Chart from './Chart';
 
+var height = window.innerHeight;
 const itemCard = (props) => {
 	return (
 		<Card onExpanderClick={() => {
@@ -30,19 +31,20 @@ const itemCard = (props) => {
 				? "Data Not Found"
 				: props.title} subtitle={numeral(props.subtitle).format('0,0.00')} expander style={{
 				padding: "12px"
-			}} avatar={
-				<Link to={"/trade/"+props.contract_type}>
-				<Button className="md-cell--left" icon>
-					arrow_left
-				</Button>
-			</Link>
-			}>
-			</CardTitle>
+			}} avatar={< Button component = {
+				Link
+			}
+			to = {
+				"/trade/" + props.contract_type
+			}
+			className = "md-cell--left" icon > arrow_left < /Button>}></CardTitle>
 			<CardText expandable style={{
 				paddingTop: "12px",
-				padding: "12px"
+				paddingBottom: "12px"
 			}}>
-				<Chart chartData={props.chartData} height={142} start={props.start} end={props.end}/>
+				<div style={{height: "200px"}}>
+					<Chart chartData={props.chartData} height={200} start={props.start} end={props.end}/>
+				</div>
 			</CardText>
 		</Card>
 	)

@@ -202,7 +202,7 @@ class HomeContainer extends React.Component {
     onInterval() {
         if (this.state.isInterval == null) {
             let intervalData = setInterval(() => {
-                if (this.state.chartData != []) {
+                if (this.state.chartData.length != 0) {
                     let now = new Date();
                     let newChartData = this.state.chartData;
                     if ((now.getSeconds() == 0) && (now.getMinutes() % 1 == 0) && (now.getMinutes() != new Date(this.state.chartData[this.state.chartData.length - 1].date).getMinutes())) {

@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import NavigationDrawer from 'react-md/lib/NavigationDrawers';
 import {Link} from 'react-router';
 import FontIcon from 'react-md/lib/FontIcons';
+import Button from 'react-md/lib/Buttons';
 
 const isActive = (to, path) => {
     return to === path;
@@ -48,7 +49,7 @@ class mainLayout extends React.Component {
                             }
                         ]
                     }
-                ]} drawerTitle="Quick Menu" contentClassName="" toolbarStyle={this.props.router.isActive("/trade")?{boxShadow:"none"}:{}} mobileDrawerType={NavigationDrawer.DrawerTypes.TEMPORARY} tabletDrawerType={NavigationDrawer.DrawerTypes.PERSISTENT} desktopDrawerType={NavigationDrawer.DrawerTypes.PERSISTENT} toolbarTitle="Nexybit">
+                ]} drawerTitle="Quick Menu" contentClassName="" toolbarStyle={this.props.router.isActive("/trade")?{boxShadow:"none"}:{}} mobileDrawerType={NavigationDrawer.DrawerTypes.TEMPORARY} tabletDrawerType={NavigationDrawer.DrawerTypes.PERSISTENT} desktopDrawerType={NavigationDrawer.DrawerTypes.PERSISTENT} toolbarTitle="Nexybit" toolbarActions={isActive('/',this.props.router.location.pathname)?<div/>:<Button icon component={Link} to={"/"}>arrow_back</Button>}>
                     {this.props.children}
                 </NavigationDrawer>
             );
