@@ -8,7 +8,7 @@ const CardList = (props) => {
         <div>
             {props.itemList.map((item, i) => {
                 return (
-                    <CardItem key={i} title={item.contract_name} subtitle={item.last_price} before={item.before_price} expand={props.CommonStore.expandItem==item.contract_type} contract_type={item.contract_type} chartData={props.CommonStore.expandItem==item.contract_type?props.chartData:[]}/>
+                    <CardItem key={i} title={item.contract_name} subtitle={item.last_price} before={item.before_price} expand={props.CommonStore.expandItem==item.contract_type} contract_type={item.contract_type} chartData={props.CommonStore.expandItem==item.contract_type?props.chartData:[]} start={props.start} end={props.end}/>
                 );
             })}
         </div>

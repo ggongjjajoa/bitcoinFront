@@ -24,9 +24,8 @@ var {ema, sma, wma, tma} = indicator;
 
 class CandleStickStockScaleChart extends React.Component {
     render() {
-        var { type, ratio, height} = this.props;
+        var { type, ratio, height, start, end, chartData} = this.props;
         var width = this.props.width - 20;
-        let chartData = this.props.chartData;
         let sma5 = sma().windowSize(5).sourcePath("close").merge((d, c) => {
             d.sma5 = c;
         }).accessor(d => d.sma5).stroke("#e54c3c");
@@ -84,7 +83,7 @@ class CandleStickStockScaleChart extends React.Component {
         } else {
             return (
                 <div>
-                    <ChartCanvas ratio={1} xExtents={[chartData[chartData.length-21].date, chartData[chartData.length-1].date]} width={width} height={height} margin={margin} type="hybrid" seriesName="MSFT" data={chartData} xAccessor={d => d.date} calculator={[sma5, sma10, sma20, sma60, sma120]} xScaleProvider={discontinuousTimeScaleProvider}>
+                    <ChartCanvas ratio={1} xExtents={[start, end]} width={width} height={height} margin={margin} type="hybrid" seriesName="MSFT" data={chartData} xAccessor={d => d.date} calculator={[sma5, sma10, sma20, sma60, sma120]} xScaleProvider={discontinuousTimeScaleProvider}>
                         <Chart id={1} yExtents={[
                             d => [
                                 d.high, d.low

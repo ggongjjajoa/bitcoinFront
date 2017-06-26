@@ -42,7 +42,7 @@ const itemCard = (props) => {
 				paddingTop: "12px",
 				padding: "12px"
 			}}>
-				<Chart chartData={props.chartData} height={142}/>
+				<Chart chartData={props.chartData} height={142} start={props.start} end={props.end}/>
 			</CardText>
 		</Card>
 	)
