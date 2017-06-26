@@ -84,7 +84,7 @@ class CandleStickStockScaleChart extends React.Component {
         } else {
             return (
                 <div>
-                    <ChartCanvas ratio={1} xExtents={[chartData[chartData.length-51].date, chartData[chartData.length-1].date]} width={width} height={height} margin={margin} type="hybrid" seriesName="MSFT" data={chartData} xAccessor={d => d.date} calculator={[sma5, sma10, sma20, sma60, sma120]} xScaleProvider={discontinuousTimeScaleProvider}>
+                    <ChartCanvas ratio={1} xExtents={[chartData[chartData.length-21].date, chartData[chartData.length-1].date]} width={width} height={height} margin={margin} type="hybrid" seriesName="MSFT" data={chartData} xAccessor={d => d.date} calculator={[sma5, sma10, sma20, sma60, sma120]} xScaleProvider={discontinuousTimeScaleProvider}>
                         <Chart id={1} yExtents={[
                             d => [
                                 d.high, d.low
