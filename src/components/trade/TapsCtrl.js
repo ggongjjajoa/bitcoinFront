@@ -12,7 +12,7 @@ import Button from 'react-md/lib/Buttons/Button';
 
 import Dialog from 'react-md/lib/Dialogs';
 
-import Order from './Order';
+import Order from './Order3';
 
 class TapsCtrl extends React.Component {
     constructor(props) {
@@ -67,7 +67,7 @@ class TapsCtrl extends React.Component {
                     add
                 </Button>
                 <Dialog id="fullOrder" onHide={()=>{this.closeDialog()}} {...this.state} fullPage aria-label="New Order">
-                    <Order closeDialog={this.closeDialog.bind(this)}/>
+                    <Order closeDialog={this.closeDialog.bind(this)} price={0} amount={0}/>
                 </Dialog>
             </div>
         );

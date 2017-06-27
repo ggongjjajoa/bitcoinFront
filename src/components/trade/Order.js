@@ -1,32 +1,62 @@
 import React from 'react';
 
-import Papers from 'react-md/lib/Papers';
-
 import Toolbar from 'react-md/lib/Toolbars';
 
 import Button from 'react-md/lib/Buttons/Button';
 
 import FontIcon from 'react-md/lib/FontIcons';
 
-import TextField from 'react-md/lib/TextFields';
+import Switch from 'react-md/lib/SelectionControls/Switch';
 
-import Divider from 'react-md/lib/Dividers';
+import NumericInput from 'react-numeric-input';
 
-const Order = (props) => {
-	const actions = <Button icon onClick={() => {
-		props.closeDialog()
-	}}>close</Button>;
-    const leftIconPrice = <FontIcon onClick={()=>{console.log("click");
-    }}>remove</FontIcon>
-	return (
-		<div>
-			<Toolbar colored title="New Order" fixed actions={actions}/>
-			<form className="md-toolbar-relative">
-				<TextField id="applicationPrice" label="Price" type="number" defaultValue={0} step={0.10} min={0} floating={true} pattern="^\d+(\.|\,)\d{2}" className="md-cell" leftIcon={leftIconPrice}/>
-				<TextField id="floatingPrice" label="Title" type="number" lineDirection="left" placeholder="0" className="md-cell md-cell--center"/>
-			</form>
-		</div>
-	)
+class Order extends React.Component {
+    render() {
+        return (
+            <div>
+                <Toolbar colored title="New Order" fixed actions={<Button icon onClick={() => {
+		            this.props.closeDialog()
+		        }}>close</Button>}/>
+                <form className="md-toolbar-relative">
+                    <div className="md-grid">
+                        <div className="md-cell md-cell--1-phone md-cell--3">
+                            Price
+                        </div>
+                        <div className="md-cell md-cell--3-phone md-cell--9">
+                            <NumericInput mobile className="form-control" style={{
+                                width: "100%"
+                            }}/>
+                        </div>
+                        <div className="md-cell md-cell--1-phone md-cell--3">
+                            Amount
+                        </div>
+                        <div className="md-cell md-cell--3-phone md-cell--9">
+                            <NumericInput mobile className="form-control" style={{
+                                width: "100%"
+                            }}/>
+                        </div>
+                        <div className="md-cell md-cell--1-phone md-cell--3">
+                            Laverage
+                        </div>
+                        <div className="md-cell md-cell--3-phone md-cell--9">
+                            <NumericInput mobile className="form-control" style={{
+                                width: "100%"
+                            }}/>
+                        </div>
+						<Switch id="marketCheck" name="market" label="Market" className="md-cell md-cell--4-phone md-cell--12 md-cell--bottom" style={{
+	                        margin: "0px 8px"
+	                    }}/>
+                        <div className="md-cell md-cell--2-phone md-cell--6">
+                            <Button flat label="Open Long"/>
+                            <Button flat label="Close Long"/>
+                            <Button flat label="Open Short"/>
+                            <Button flat label="Close Short"/>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        )
+    }
 }
 
-export default Order
+export default Order;
