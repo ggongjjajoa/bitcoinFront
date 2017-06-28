@@ -14,24 +14,28 @@ import Dialog from 'react-md/lib/Dialogs';
 
 import Order from '../../container/OrderContainer';
 
+import OrderBook from './OrderBook';
+
 class TapsCtrl extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             visible: false,
             pageX: null,
-            pageY: null
+            pageY: null,
+            price: 0,
+            amount: 0
         };
     }
 
-    openDialog(e,data) {
+    openDialog(e, price, amount) {
         let {pageX, pageY} = e;
         if (e.changedTouches) {
             const [touch] = e.changedTouches;
             pageX = touch.pageX;
             pageY = touch.pageY;
         }
-        this.setState({visible: true, pageX, pageY});
+        this.setState({visible: true, pageX, pageY, price:price, amount:amount});
     }
 
     closeDialog() {
@@ -42,15 +46,13 @@ class TapsCtrl extends React.Component {
         return (
             <div>
                 <TabsContainer panelClassName="md-grid" colored panelStyle={{
-                    paddingLeft: "0px",
-                    paddingRight: "0px"
+                    padding: "0px"
                 }}>
                     <Tabs tabId="tabs" style={{
                         boxShadow: "0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12), 0 2px 4px -1px rgba(0,0,0,.4)"
                     }}>
                         <Tab label="Order Book">
-                            <Papers className="md-cell md-cell--2-phone md-cell--4-tablet md-cell--6-desktop">Avatars</Papers>
-                            <Papers className="md-cell md-cell--2-phone md-cell--4-tablet md-cell--6-desktop">vvv</Papers>
+                            <OrderBook depthList={this.props.depthList} tickerList={this.props.tickerList} onOrder={this.openDialog.bind(this)}/>
                         </Tab>
                         <Tab label="Position">
                             <div className="md-cell md-cell--4">two</div>
@@ -63,11 +65,11 @@ class TapsCtrl extends React.Component {
                         </Tab>
                     </Tabs>
                 </TabsContainer>
-                <Button onClick={(e)=>{this.openDialog(e,11)}} floating secondary fixed>
+                <Button onClick={(e)=>{this.openDialog(e,0,0)}} floating secondary fixed>
                     add
                 </Button>
                 <Dialog id="fullOrder" onHide={()=>{this.closeDialog()}} {...this.state} fullPage aria-label="New Order">
-                    <Order closeDialog={this.closeDialog.bind(this)} price={0} amount={0}/>
+                    <Order closeDialog={this.closeDialog.bind(this)} price={this.state.price} amount={this.state.amount}/>
                 </Dialog>
             </div>
         );

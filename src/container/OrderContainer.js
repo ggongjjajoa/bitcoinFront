@@ -54,11 +54,11 @@ class Order3 extends React.Component {
                         <div className="md-cell md-cell--1-phone md-cell--1 md-cell--bottom" style={{
                             marginBottom: "16px"
                         }}>Price</div>
-                        <NumberInput value={0} step={0.1} label={"Price"} float={2} className="md-cell md-cell--3-phone md-cell--3 md-cell--bottom"/>
+                    <NumberInput value={this.props.price} step={0.1} label={"Price"} float={2} className="md-cell md-cell--3-phone md-cell--3 md-cell--bottom"/>
                         <div className="md-cell md-cell--1-phone md-cell--1 md-cell--bottom" style={{
                             marginBottom: "16px"
                         }}>Amount</div>
-                        <NumberInput value={0} label={"Amount"} className="md-cell md-cell--3-phone md-cell--3 md-cell--bottom"/>
+                    <NumberInput value={this.props.amount} label={"Amount"} className="md-cell md-cell--3-phone md-cell--3 md-cell--bottom"/>
                             <Checkbox id="market" name="marketCheck" label="Market" inline className="md-cell md-cell--2-phone md-cell--2 md-cell--bottom" style={{
 	                            margin: "0px 8px"
 	                        }}/>

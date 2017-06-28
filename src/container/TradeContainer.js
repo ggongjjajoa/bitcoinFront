@@ -23,6 +23,7 @@ class TradeContainer extends React.Component {
             subscribePnl: null,
             askList: [],
             bidList: [],
+            depthList: [],
             tickerList: []
         }
     }
@@ -129,7 +130,7 @@ class TradeContainer extends React.Component {
         let subscribe = client.subscribe("/topic/ticker", message => {
             let parseMsg = JSON.parse(message.body);
             if (this.props.params.contract_type == parseMsg.contract_type) {
-                if (this.state.tickerList.length > this.props.orderBookLength) {
+                if (this.state.tickerList.length >= this.props.orderBookLength) {
                     this.setState({
                         tickerList: update(this.state.tickerList, {
                             $unshift: [
@@ -168,10 +169,20 @@ class TradeContainer extends React.Component {
         let subscribe = client.subscribe("/topic/depth", message => {
             let parseMsg = JSON.parse(message.body);
             if (parseMsg.contract_type == this.props.params.contract_type) {
-                this.setState({askList: parseMsg.asks, bidList: parseMsg.bids});
+                let depths = [];
+                for(let i = parseMsg.asks.length - 1 ; i > (parseMsg.asks.length - 1) - (this.props.orderBookLength / 2) ; i--){
+                    let ask = parseMsg.asks[i];
+                    ask[2] = "ask";
+                    depths.push(ask);
+                }
+                for(let i = 0 ; i < (this.props.orderBookLength / 2) ; i++ ){
+                    let bid = parseMsg.bids[i];
+                    bid[2] = "bid";
+                    depths.push(bid);
+                }
+                this.setState({depthList: depths});
+            }else if (parseMsg.contract_type == "index") {
             }
-            {/*if (parseMsg.contract_type == "index") {
-            }*/}
         });
         this.setState({subscribeDepth: subscribe});
     }
@@ -645,12 +656,11 @@ class TradeContainer extends React.Component {
     }
 
     render() {
-        console.log(this.state);
-        return (<TabsCtrl/>);
+        return (<TabsCtrl depthList={this.state.depthList} tickerList={this.state.tickerList}/>);
     }
 }
 TradeContainer.defaultProps = {
-	orderBookLength: 0,
+	orderBookLength: 10,
 };
 
 
