@@ -12,7 +12,7 @@ import Button from 'react-md/lib/Buttons/Button';
 
 import Dialog from 'react-md/lib/Dialogs';
 
-import Order from './Order3';
+import Order from '../../container/OrderContainer';
 
 class TapsCtrl extends React.Component {
     constructor(props) {

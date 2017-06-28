@@ -16,8 +16,6 @@ import {socketConnected, socketDisconnect, setItemList} from './action/CommonAct
 import MainLayout from './components/layouts/MainLayout';
 import {serverUrl} from './Config';
 
-import TapsCtrl from './components/trade/TapsCtrl';
-
 import HomeContainer from './container/HomeContainer';
 import TradeContainer from './container/TradeContainer';
 
@@ -75,7 +73,7 @@ class App extends React.Component {
             <Router history={browserHistory}>
                 <Route path="/" components={MainLayout}>
                     <IndexRoute component={HomeContainer}/>
-                    <Route path="trade" components={TapsCtrl}>
+                    <Route path="trade" components={TradeContainer}>
                         <Route path=":contract_type"/>
                     </Route>
                 </Route>

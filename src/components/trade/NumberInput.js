@@ -55,11 +55,11 @@ class numberInput extends React.Component {
 	render() {
 		const left = <FontIcon onTouchStart= {() => {this._onTouchStart((this.props.step*-1))}} onTouchEnd= {() => {this._onTouchEnd()}}>remove</FontIcon>
 		const right = <FontIcon onTouchStart= {() => {this._onTouchStart(this.props.step)}} onTouchEnd= {() => {this._onTouchEnd()}}>add</FontIcon>
-		return (<TextField id="numberInput" floating={true} label={this.props.label} value={this.state.value} onChange={(e) => {
+		return (<TextField id="numberInput" floating={true} placeholder={this.props.label} value={this.state.value} onChange={(e) => {
 			this._onChange(e);
 		}} type="number" leftIcon={left} rightIcon={right} className={this.props.className} style={{
 			margin: "0px 8px"
-		}}/>);
+		}} inputStyle={{textAlign:"right"}}/>);
 	}
 }
 numberInput.defaultProps = {
