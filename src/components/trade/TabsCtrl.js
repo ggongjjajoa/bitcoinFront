@@ -35,6 +35,7 @@ class TapsCtrl extends React.Component {
             pageX = touch.pageX;
             pageY = touch.pageY;
         }
+        console.log(pageX);
         this.setState({visible: true, pageX, pageY, price:price, amount:amount});
     }
 
