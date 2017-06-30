@@ -16,34 +16,32 @@ import Login from './Login';
 import SignUp from './SignUp';
 import Forget from './Forget';
 
-class UserDialog extends React.Component {
-    render() {
-        const actions = <Button icon onClick= {() => {this.props.closeDialog()}}>close</Button>;
-        return (
-            <div>
-                <Toolbar colored title="User"  fixed actions={actions}/>
-                <TabsContainer activeTabIndex={0} className="md-toolbar-relative" panelClassName="md-grid">
-                    <Tabs tabId="tab">
-                        <Tab label="Login" style={{
+const UserDialog = (props) => {
+    const actions = <Button icon onClick= {() => {props.closeDialog()}}>close</Button>;
+    return (
+        <div>
+            <Toolbar colored title="User" fixed actions={actions}/>
+            <TabsContainer className="md-toolbar-relative" panelClassName="md-grid" disabled={true}>
+                <Tabs tabId="tab">
+                    <Tab label="Login" style={{
                             color: "#000000"
                         }}>
-                            <Login/>
-                        </Tab>
-                        <Tab label="Signup" style={{
+                        <Login onClose={()=>{props.closeDialog()}}/>
+                    </Tab>
+                    <Tab label="Signup" style={{
                             color: "#000000"
                         }}>
-                            <SignUp/>
-                        </Tab>
-                        <Tab label="Forget" style={{
+                        <SignUp/>
+                    </Tab>
+                    <Tab label="Forget" style={{
                             color: "#000000"
                         }}>
-                         <Forget/>
-                        </Tab>
-                    </Tabs>
-                </TabsContainer>
-            </div>
-        );
-    }
+                        <Forget/>
+                    </Tab>
+                </Tabs>
+            </TabsContainer>
+        </div>
+    );
 }
 
 export default UserDialog;

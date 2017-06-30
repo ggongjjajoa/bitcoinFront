@@ -28,7 +28,7 @@ export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 
-export const login = (id, password) => (dispatch) => loginFlow(dispatch, id, password);
+export const login = (id, password, callback) => (dispatch) => loginFlow(dispatch, id, password, callback);
 
 const loginRequest = () => {
     return {type: LOGIN_REQUEST};
@@ -50,7 +50,7 @@ const _getAuthEndpoint = (grantType) => {
     }
 };
 
-const loginFlow = (dispatch, username, password) => {
+const loginFlow = (dispatch, username, password, callback) => {
     dispatch(loginRequest());
     return axios.post(_getAuthEndpoint(oAuthConfig.grant_type) + '&username=' + username + '&password=' + escape(password)).then((resp) => {
         deleteOAuthToken();
@@ -61,11 +61,10 @@ const loginFlow = (dispatch, username, password) => {
         });
         setOAuthToken(resp.data);
         sessionStorage.setItem(USERNAME, username);
-        browserHistory.push('/trade')
+        callback();
         return dispatch(loginSuccess());
     }).catch((err) => {
         const error = JSON.parse(JSON.stringify(err));
-        showAlert(error.response.data.error_description);
         return dispatch(loginFailure());
     });
 }

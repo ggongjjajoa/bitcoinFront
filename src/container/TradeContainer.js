@@ -11,7 +11,6 @@ class TradeContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            contract_type: this.props.params.contract_type,
             hasMore: false,
             historyList: [],
             orderList: [],
@@ -192,7 +191,7 @@ class TradeContainer extends React.Component {
             let parseMsg = JSON.parse(message.body);
             if (parseMsg.username == getUsername()) {
                 if (parseMsg.RESULT == "S_OK") {
-                    showSuccess("Successfully Order!");
+                    console.log("Successfully Order!");
                     if (parseMsg.type == "1" || parseMsg.type == "2") {
                         this.setState({
                             openOrdersList: update(this.state.openOrdersList, {
@@ -302,7 +301,7 @@ class TradeContainer extends React.Component {
                         }
                     }
                 } else {
-                    showAlert(parseMsg.RESULT);
+                    console.log(parseMsg.RESULT);
                 }
             }
         });
@@ -316,9 +315,9 @@ class TradeContainer extends React.Component {
                 if (parseMsg.message != "") {
                     if (parseMsg.message == "Your position is margin-called. Please check your order-history." && this.state.marginCall == false) {
                         this.setState({marginCall: true});
-                        showSMessage(parseMsg.message, "info");
+                        console.log(parseMsg.message, "info");
                     } else {
-                        showSMessage(parseMsg.message, "info");
+                        console.log(parseMsg.message, "info");
                     }
                 }
                 for (let i = 0; i < this.state.openOrdersList.length; i++) {
@@ -526,8 +525,7 @@ class TradeContainer extends React.Component {
                             }
                             let pairPosition = this.getPositionIndex(pair, parseMsg.contract_type);
                             if (pairPosition == null) {
-                                showAlert("Position Select Error");
-                                console.log(parseMsg);
+                                console.log("Position Select Error");
                             }
                             if (this.state.openOrdersList[i].volOutStd == ((parseMsg.vol) * 1) + ((this.state.openOrdersList[i].filled) * 1)) {
                                 this.setState({

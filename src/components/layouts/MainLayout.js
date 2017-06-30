@@ -12,6 +12,8 @@ import Dialog from 'react-md/lib/Dialogs';
 
 import UserDialog from '../user/UserDialog';
 
+import {getUsername, deleteOAuthToken} from '../../oAuth';
+
 const isActive = (to, path) => {
     return to === path;
 }
@@ -22,8 +24,22 @@ class mainLayout extends React.Component {
         this.state = {
             visible: false,
             pageX: null,
-            pageY: null
+            pageY: null,
+            userId: getUsername()
         };
+    }
+
+    logout() {
+        deleteOAuthToken();
+        this.setState({userId: null});
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.LoginStore.isLoggedin == true){
+            this.setState({
+                userId: getUsername()
+            });
+        }
     }
 
     openDialog(e) {
@@ -43,11 +59,19 @@ class mainLayout extends React.Component {
     render() {
         if (this.props.CommonStore.itemList != null) {
             const actions = [];
-            actions.push(
-                <Button icon onClick={(e) => {
-                    this.openDialog(e)
-                }}>person_outline</Button>
-            )
+            if (this.state.userId != null) {
+                actions.push(
+                    <Button icon onClick={() => {
+                        this.logout()
+                    }}>person</Button>
+                );
+            } else {
+                actions.push(
+                    <Button icon onClick={(e) => {
+                        this.openDialog(e)
+                    }}>person_outline</Button>
+                );
+            }
             if (!isActive('/', this.props.router.location.pathname)) {
                 actions.push(
                     <Button icon component={Link} to={"/"}>arrow_back</Button>
@@ -71,11 +95,11 @@ class mainLayout extends React.Component {
                             nestedItems: [
                                 {
                                     component: Link,
-                                    to: '/trade/thisweek',
+                                    to: '/trade/this_week',
                                     primaryText: this.props.CommonStore.itemList[0].contract_name
                                 }, {
                                     component: Link,
-                                    to: '/trade/nextweek',
+                                    to: '/trade/next_week',
                                     primaryText: this.props.CommonStore.itemList[1].contract_name
                                 }, {
                                     component: Link,
@@ -105,7 +129,7 @@ class mainLayout extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    return {CommonStore: state.CommonReducer};
+    return {CommonStore: state.CommonReducer, LoginStore: state.LoginReducer};
 };
 
 export default connect(mapStateToProps)(mainLayout);

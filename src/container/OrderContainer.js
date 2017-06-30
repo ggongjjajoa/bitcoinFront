@@ -33,7 +33,7 @@ class Order3 extends React.Component {
                         this.props.closeDialog()
                     }
                 } > close < /Button>}/>
-			<div style={{height:"45%", backgroundColor:"#0288D1"}} className="md-toolbar-relative"></div>
+            <div style={{height:"45%", backgroundColor:"#0288D1"}} className="md-toolbar-relative" onClick={()=>{console.log("aaa");}}></div>
                 <form>
                     <TabsContainer onTabChange={(e) => {
                         console.log(e);
@@ -67,8 +67,8 @@ class Order3 extends React.Component {
                             marginBottom: "16px"
                         }}>Leverage</div>
                         <NumberInput value={10} min={1} max={80} label={"Leveage"} className="md-cell md-cell--3-phone md-cell--3 md-cell--bottom"/>
-                        <Button primary raised label="Chat" className="md-cell md-cell--2-phone md-cell--4-tablet md-cell--2 md-cell--8-offset"></Button>
-                        <Button secondary raised label="Chat" className="md-cell md-cell--2-phone md-cell--4-tablet md-cell--2"></Button>
+                        <Button primary raised label="Chat" className="md-cell md-cell--2-phone md-cell--4-tablet md-cell--2 md-cell--8-offset"/>
+                        <Button secondary raised label="Chat" className="md-cell md-cell--2-phone md-cell--4-tablet md-cell--2"/>
                     </div>
                 </form>
             </div>
