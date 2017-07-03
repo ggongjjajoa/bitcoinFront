@@ -10,6 +10,10 @@ import {
 import {connect} from 'react-redux';
 import axios from 'axios';
 import webstomp from 'webstomp-client';
+import Alert from 'react-s-alert';
+
+import sAlertDefault from 'style-loader!css-loader!react-s-alert/dist/s-alert-default.css';
+import sAlertSlide from 'style-loader!css-loader!react-s-alert/dist/s-alert-css-effects/slide.css';
 
 import {serverUrl, requestSuccess, requestFailure} from './Config';
 
@@ -69,7 +73,7 @@ class App extends React.Component {
 
     connectWebSocket() {
         console.log("connect socket");
-        let ws = new SockJS(serverUrl+"/ws-quote");
+        let ws = new SockJS(serverUrl + "/ws-quote");
         let client = webstomp.over(ws);
         client.heartbeat.incoming = 3000;
         client.heartbeat.outgoing = 0;
@@ -82,38 +86,43 @@ class App extends React.Component {
         });
     }
 
-    reconnectWebSocket(){
+    reconnectWebSocket() {
         console.log("reconnect socket");
         let connected = false;
-        let reconInv = setInterval(()=>{
+        let reconInv = setInterval(() => {
             let ws = new SockJS(serverUrl + "/ws-quote");
             let client = webstomp.over(ws);
             client.heartbeat.incoming = 3000;
             client.heartbeat.outgoing = 0;
             client.debug = () => {};
-            client.connect({},()=>{
+            client.connect({}, () => {
                 clearInterval(reconInv);
                 connected = true;
                 this.props.dispatch(socketConnected(client));
-            },()=>{
-                if(connected){
+            }, () => {
+                if (connected) {
                     this.props.dispatch(socketDisconnect());
                     this.reconnectWebSocket();
                 }
             });
-        },1000);
+        }, 1000);
     }
 
     render() {
         return (
-            <Router history={browserHistory}>
-                <Route path="/" components={MainLayout}>
-                    <IndexRoute component={HomeContainer}/>
-                    <Route path="trade" components={TradeContainer}>
-                        <Route path=":contract_type"/>
+            <div>
+                <Router history={browserHistory}>
+                    <Route path="/" components={MainLayout}>
+                        <IndexRoute component={HomeContainer}/>
+                        <Route path="trade" components={TradeContainer}>
+                            <Route path=":contract_type"/>
+                        </Route>
                     </Route>
-                </Route>
-            </Router>
+                </Router>
+                <Alert stack={{
+                    limit: 3
+                }}/>
+            </div>
         );
     }
 }

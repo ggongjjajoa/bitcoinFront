@@ -13,10 +13,10 @@ export const signup = (id, password, confirm) => (dispatch) => signupFlow(dispat
 const signupFlow = (dispatch, id, password, confirm) => {
     dispatch(signupRequest());
     if (password != confirm) {
-        showAlert("Please Check Password");
+        {/*showAlert("Please Check Password");*/}
         return dispatch(signupFailure());
     } else if (!(24 >= password.length && password.length >= 8) || !(15 >= id.length && id.length >= 4)) {
-        showAlert("Please Check ID Length Or password Length");
+        {/*showAlert("Please Check ID Length Or password Length");*/}
         return dispatch(signupFailure());
     } else {
         return axios.post(serverUrl + "/users", {
@@ -27,10 +27,10 @@ const signupFlow = (dispatch, id, password, confirm) => {
             partnerId: null
         }).then((resp) => {
             dispatch(login(id, password));
-            showSMessage("You have successfully signed up","success");
+            {/*showSMessage("You have successfully signed up","success");*/}
             return dispatch(signupSuccess());
         }).catch((err) => {
-            showAlert(err.response.data.message);
+            {/*showAlert(err.response.data.message);*/}
             return dispatch(signupFailure());
         });
     }

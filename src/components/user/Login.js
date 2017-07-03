@@ -1,10 +1,12 @@
 import React from 'react';
 
+import {connect} from 'react-redux';
+
+import Alert from 'react-s-alert';
+
 import TextField from 'react-md/lib/TextFields';
 
 import Button from 'react-md/lib/Buttons';
-
-import {connect} from 'react-redux';
 
 import SliderCaptcha from './SliderCaptcha';
 
@@ -16,9 +18,13 @@ class Login extends React.Component {
         const {dispatch} = this.props;
         var special_pattern = /[*@_+./]/gi;
         if (special_pattern.test(this.userPassword.getField().value) == false) {
-                dispatch(login(this.userId.getField().value, this.userPassword.getField().value, this._callback.bind(this)))
+            dispatch(login(this.userId.getField().value, this.userPassword.getField().value, this._callback.bind(this)))
         } else {
-            console.log("특문");
+            Alert.warning("Your password contains an unsupported special character [@_+.]", {
+                position: 'bottom',
+                effect: 'slide',
+                timeout: 5000,
+            });
         }
     }
 
