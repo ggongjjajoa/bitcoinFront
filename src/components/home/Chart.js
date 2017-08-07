@@ -25,6 +25,7 @@ var {ema, sma, wma, tma} = indicator;
 class CandleStickStockScaleChart extends React.Component {
     render() {
         var { type, ratio, height, start, end, chartData} = this.props;
+
         if (chartData.length==0) {
             return (
                 <div style={{

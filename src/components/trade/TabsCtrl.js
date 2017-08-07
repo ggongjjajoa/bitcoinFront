@@ -16,6 +16,10 @@ import Order from '../../container/OrderContainer';
 
 import OrderBook from './OrderBook';
 
+import PositionList from './PositionList';
+import OrderList from './OrderList';
+import HistoryList from './HistoryList';
+
 class TapsCtrl extends React.Component {
     constructor(props) {
         super(props);
@@ -43,6 +47,7 @@ class TapsCtrl extends React.Component {
     }
 
     render() {
+        let height = window.innerHeight;
         return (
             <div>
                 <TabsContainer panelClassName="md-grid" colored panelStyle={{
@@ -55,13 +60,13 @@ class TapsCtrl extends React.Component {
                             <OrderBook depthList={this.props.depthList} tickerList={this.props.tickerList} onOrder={this.openDialog.bind(this)}/>
                         </Tab>
                         <Tab label="Position">
-                            <div className="md-cell md-cell--4">two</div>
+                            <PositionList/>
                         </Tab>
                         <Tab label="Order">
-                            <div className="md-cell md-cell--4">two</div>
+                            <OrderList/>
                         </Tab>
                         <Tab label="History">
-                            <div className="md-cell md-cell--4">two</div>
+                            <HistoryList/>
                         </Tab>
                     </Tabs>
                 </TabsContainer>

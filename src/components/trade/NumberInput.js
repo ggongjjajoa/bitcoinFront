@@ -39,6 +39,7 @@ class numberInput extends React.Component {
 	}
 
 	_onChange(data) {
+		console.log(data);
 		if (!isNaN(data)) {
 			if (this.props.min > data) {
 				this.setState({value: this.props.min});
@@ -55,9 +56,7 @@ class numberInput extends React.Component {
 	render() {
 		const left = <FontIcon onTouchStart= {() => {this._onTouchStart((this.props.step*-1))}} onTouchEnd= {() => {this._onTouchEnd()}}>remove</FontIcon>
 		const right = <FontIcon onTouchStart= {() => {this._onTouchStart(this.props.step)}} onTouchEnd= {() => {this._onTouchEnd()}}>add</FontIcon>
-		return (<TextField id="numberInput" floating={true} placeholder={this.props.label} value={this.state.value} onChange={(e) => {
-			this._onChange(e);
-		}} type="number" leftIcon={left} rightIcon={right} className={this.props.className} style={{
+		return (<TextField id="numberInput" floating={true} placeholder={this.props.label} value={this.state.value} type="number" leftIcon={left} rightIcon={right} className={this.props.className} style={{
 			margin: "0px 8px"
 		}} inputStyle={{textAlign:"right"}}/>);
 	}
